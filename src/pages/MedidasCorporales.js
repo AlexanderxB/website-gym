@@ -105,7 +105,7 @@ function MedidasCorporales() {
         {/* Primer contenedor */}
         <div style={containerStyle}>
           <h2 style={titleStyle}>Medidas Corporales</h2>
-
+             <h2 style={{ textAlign: "left" }}>Mes/año</h2>
           <label htmlFor="hombros" style={labelStyle}>
             Hombros
           </label>
@@ -114,18 +114,6 @@ function MedidasCorporales() {
             id="hombros"
             value={hombros}
             onChange={(e) => setHombros(e.target.value)}
-            placeholder="Ingrese su medida en centímetros"
-            style={inputStyle}
-          />
-
-          <label htmlFor="espalda" style={labelStyle}>
-            Espalda
-          </label>
-          <input
-            type="text"
-            id="espalda"
-            value={espalda}
-            onChange={(e) => setEspalda(e.target.value)}
             placeholder="Ingrese su medida en centímetros"
             style={inputStyle}
           />

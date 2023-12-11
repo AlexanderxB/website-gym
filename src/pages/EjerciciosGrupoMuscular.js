@@ -137,7 +137,7 @@ function EjerciciosGrupoMuscular() {
       <div style={{ display: "flex", position: "relative" }}>
         <img src={imggrupomuscular} alt="Logo" className="logo-image" style={backgroundImageStyle} />
         <div style={containerStyle}>
-        <h2 style={{ textAlign: "center", color: "#fff" }}>Elija una Categoría</h2>
+        <h2 style={{ textAlign: "center", color: "#fff" }}>Elija una Parte del Cuerpo</h2>
           <div style={buttonContainerStyle}>
             <button
               style={hombrosStyle}

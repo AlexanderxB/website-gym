@@ -23,7 +23,7 @@ function PlanEntrenamiento() {
     height: "80px",
     position: "absolute",
     top: "100px",
-    left: "700px",
+    left: "800px",
     padding: "0px",
     borderRadius: "15px",
   };
@@ -65,61 +65,50 @@ function PlanEntrenamiento() {
     transition: "background-color 0.3s",  // Transición suave para el cambio de color
   };
 
-  const hombrosStyle = {
+  const lunesStyle = {
     ...buttonStyle,
-    backgroundColor: hoveredButton === "Hombros" ? "#7F63EC" : "#B42B51",
+    backgroundColor: hoveredButton === "Lunes" ? "#7F63EC" : "#B42B51",
     color: "#fff",
   };
 
-  const espaldaStyle = {
+  const martesStyle = {
     ...buttonStyle,
-    backgroundColor: hoveredButton === "Espalda" ? "#7F63EC" : "#B42B51",
+    backgroundColor: hoveredButton === "Martes" ? "#7F63EC" : "#B42B51",
     color: "#fff",
   };
 
-  const pechoStyle = {
+  const miercolesStyle = {
     ...buttonStyle,
-    backgroundColor: hoveredButton === "Pecho" ? "#7F63EC" : "#B42B51",
+    backgroundColor: hoveredButton === "Miercoles" ? "#7F63EC" : "#B42B51",
     color: "#fff",
   };
 
-  const AbdomenStyle = {
+  const juevesStyle = {
     ...buttonStyle,
-    backgroundColor: hoveredButton === "Abdomen" ? "#7F63EC" : "#B42B51",
+    backgroundColor: hoveredButton === "Jueves" ? "#7F63EC" : "#B42B51",
     color: "#fff",
   };
 
-  const BicepStyle = {
+  const viernesStyle = {
     ...buttonStyle,
-    backgroundColor: hoveredButton === "Bicep" ? "#7F63EC" : "#B42B51",
+    backgroundColor: hoveredButton === "Viernes" ? "#7F63EC" : "#B42B51",
     color: "#fff",
   };
 
   
 
-  const TricepStyle = {
+  const sabadoStyle = {
     ...buttonStyle,
-    backgroundColor: hoveredButton === "Tricep" ? "#7F63EC" : "#B42B51",
+    backgroundColor: hoveredButton === "Sabado" ? "#7F63EC" : "#B42B51",
     color: "#fff",
   };
 
-  const AntebrazoStyle = {
+  const domingoStyle = {
     ...buttonStyle,
-    backgroundColor: hoveredButton === "Antebrazo" ? "#7F63EC" : "#B42B51",
+    backgroundColor: hoveredButton === "Domingo" ? "#7F63EC" : "#B42B51",
     color: "#fff",
   };
 
-  const GluteoStyle = {
-    ...buttonStyle,
-    backgroundColor: hoveredButton === "Gluteo" ? "#7F63EC" : "#B42B51",
-    color: "#fff",
-  };
-
-  const PiernaStyle = {
-    ...buttonStyle,
-    backgroundColor: hoveredButton === "Pierna" ? "#7F63EC" : "#B42B51",
-    color: "#fff",
-  };
 
   const matrixContainerStyle = {
     display: "grid",
@@ -163,71 +152,58 @@ function PlanEntrenamiento() {
           {/* Aquí puedes agregar cualquier contenido adicional que desees dentro del contenedor */}
         </div>
         <div style={containerStyle}>
-        <h2 style={{ textAlign: "center", color: "#fff" }}>Elija una Categoría</h2>
+        <h2 style={{ textAlign: "center", color: "#fff" }}>Elija un Día</h2>
           <div style={buttonContainerStyle}>
             <button
-              style={hombrosStyle}
-              onMouseEnter={() => setHoveredButton("Hombros")}
+              style={lunesStyle}
+              onMouseEnter={() => setHoveredButton("Lunes")}
               onMouseLeave={() => setHoveredButton(null)}
             >
-              Hombros
+              Lunes
             </button>
             <button
-              style={espaldaStyle}
-              onMouseEnter={() => setHoveredButton("Espalda")}
+              style={martesStyle}
+              onMouseEnter={() => setHoveredButton("Martes")}
               onMouseLeave={() => setHoveredButton(null)}
             >
-              Espalda
+              Martes
             </button>
             <button
-              style={pechoStyle}
-              onMouseEnter={() => setHoveredButton("Pecho")}
+              style={miercolesStyle}
+              onMouseEnter={() => setHoveredButton("Miercoles")}
               onMouseLeave={() => setHoveredButton(null)}
             >
-              Pecho
+              Miercoles
             </button>
             <button
-              style={AbdomenStyle}
-              onMouseEnter={() => setHoveredButton("Abdomen")}
+              style={juevesStyle}
+              onMouseEnter={() => setHoveredButton("Jueves")}
               onMouseLeave={() => setHoveredButton(null)}
             >
-              Abdomen
+              Jueves
             </button>
             <button
-              style={BicepStyle}
-              onMouseEnter={() => setHoveredButton("Bicep")}
+              style={viernesStyle}
+              onMouseEnter={() => setHoveredButton("Viernes")}
               onMouseLeave={() => setHoveredButton(null)}
             >
-              Bicep
+              Viernes
             </button>
             <button
-              style={TricepStyle}
-              onMouseEnter={() => setHoveredButton("Tricep")}
+              style={sabadoStyle}
+              onMouseEnter={() => setHoveredButton("Sabado")}
               onMouseLeave={() => setHoveredButton(null)}
             >
-              Tricep
+              Sabado
             </button>
             <button
-              style={AntebrazoStyle}
-              onMouseEnter={() => setHoveredButton("Antebrazo")}
+              style={domingoStyle}
+              onMouseEnter={() => setHoveredButton("Domingo")}
               onMouseLeave={() => setHoveredButton(null)}
             >
-              Antebrazo
+              Domingo
             </button>
-            <button
-              style={GluteoStyle}
-              onMouseEnter={() => setHoveredButton("Gluteo")}
-              onMouseLeave={() => setHoveredButton(null)}
-            >
-              Gluteo
-            </button>
-            <button
-              style={PiernaStyle}
-              onMouseEnter={() => setHoveredButton("Pierna")}
-              onMouseLeave={() => setHoveredButton(null)}
-            >
-              Pierna
-            </button>
+            
             </div>
         </div>
           <div style={matrixContainerStyle}>

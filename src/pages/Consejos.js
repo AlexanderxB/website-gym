@@ -10,18 +10,32 @@ function Motivacion() {
   const backgroundImageStyle = {
     width: "1980px",
     height: "850px",
-    marginTop: "80px"
+    marginTop: "80px",
+    position: "relative",
   };
 
   const containerStyle = {
+    position: "absolute",
+    top: "180px",
+    left: "850px",
+    padding: "20px",
+    borderRadius: "15px",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
     width: "600px",
     height: "150px",
-    position: "absolute",
-    top: "180px",
-    left: "1100px",
-    padding: "20px",
-    borderRadius: "15px",
+    zIndex: 2, // Capa superior
+  };
+
+  const container2Style = {
+    ...containerStyle,
+    top: "380px",
+    zIndex: 3, // Capa superior
+  };
+
+  const container3Style = {
+    ...containerStyle,
+    top: "580px",
+    zIndex: 4, // Capa superior
   };
 
   const volverStyle = {
@@ -50,26 +64,16 @@ function Motivacion() {
     borderRadius: "50%",
   };
 
-  // Estilos adicionales para los contenedores duplicados
-  const container2Style = {
-    ...containerStyle,
-    top: "380px", // Ajusta la posición vertical del segundo contenedor
-  };
-
-  const container3Style = {
-    ...containerStyle,
-    top: "580px", // Ajusta la posición vertical del tercer contenedor
-  };
-
   return (
     <div>
       <Navbar2 />
       <div style={{ display: "flex", position: "relative" }}>
         <img src={imgaacerca} alt="Logo" className="logo-image" style={backgroundImageStyle} />
+
+        {/* Primer contenedor */}
         <div style={containerStyle}>
           <div style={contentStyle}>
             <div style={imageContainerStyle}>
-              {/* Aquí inserta la imagen del primer contenedor */}
               <img
                 src={imgestiramiento1}
                 alt="Logo"
@@ -81,12 +85,11 @@ function Motivacion() {
           </div>
           <div style={volverStyle}></div>
         </div>
-        
+
         {/* Segundo contenedor */}
         <div style={container2Style}>
           <div style={contentStyle}>
             <div style={imageContainerStyle}>
-              {/* Aquí inserta la imagen del segundo contenedor */}
               <img
                 src={imgdescanso}
                 alt="Logo"
@@ -103,7 +106,6 @@ function Motivacion() {
         <div style={container3Style}>
           <div style={contentStyle}>
             <div style={imageContainerStyle}>
-              {/* Aquí inserta la imagen del tercer contenedor */}
               <img
                 src={imgvervideo}
                 alt="Logo"

@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -9,6 +8,7 @@ import Consejos from "./pages/Consejos";
 import MedidasCorporales from "./pages/MedidasCorporales";
 import PlanEntrenamiento from "./pages/PlanEntrenamiento";
 import EjerciciosGrupoMuscular from "./pages/EjerciciosGrupoMuscular";
+
 
 function App() {
   return (
