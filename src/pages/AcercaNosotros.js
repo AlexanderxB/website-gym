@@ -7,38 +7,38 @@ import logo from "../assets/images/logogym2.png";
 
 function AcercaNosotros() {
   const imageStyle = {
-    width: "1900px",   // Ancho de la imagen
+    width: "1900px",   
     height: "850px",
-    marginTop: "80px",  // Altura de la imagen
+    marginTop: "80px",  
   };
 
   const containerStyle = {
-    backgroundColor: "rgba(255, 255, 255, 0.6)",   // Contenedor semi-transparente
-    width: "450px",             // Ancho del contenedor
-    height: "600px",            // Altura del contenedor
-    position: "absolute",       // Posición absoluta
-    top: "180px",                // Distancia desde la parte superior
-    left: "1250px",              // Distancia desde la izquierda
-    padding: "20px",             // Espaciado interno del contenedor
-    borderRadius: "15px",        // Esquinas redondeadas
+    backgroundColor: "rgba(255, 255, 255, 0.6)",   
+    width: "450px",             
+    height: "600px",            
+    position: "absolute",       
+    top: "180px",                
+    left: "1250px",              
+    padding: "20px",             
+    borderRadius: "15px",        
   };
 
   const logoStyle = {
-    width: "100%",   // El logo ocupa el 100% del ancho del contenedor
-    marginBottom: "20px",  // Espaciado inferior entre el logo y el texto
+    width: "100%",   
+    marginBottom: "20px",  
   };
 
   const volverStyle = {
-    position: "absolute",        // Posición absoluta para el icono "volver"
-    bottom: "10px",               // Distancia desde la parte inferior
-    right: "10px",                // Distancia desde la derecha
+    position: "absolute",        
+    bottom: "10px",               
+    right: "10px",                
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   };
 
   const volverIconStyle = {
-    width: "40px",   // Ajusta el tamaño de la imagen "volver"
+    width: "40px",   
     height: "40px",
   };
 

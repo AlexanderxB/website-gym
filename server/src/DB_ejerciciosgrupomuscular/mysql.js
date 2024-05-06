@@ -43,9 +43,9 @@ function todos(tabla){
     });
 }
 
-function uno(tabla, ID_EjerciciosGrupoMuscular){
+function uno(tabla, Cedula){
     return new Promise( (resolve,reject) => {
-        conexion.query(`SELECT * FROM ${tabla} WHERE ID_EjerciciosGrupoMuscular=${ID_EjerciciosGrupoMuscular}`, (error, result) => {
+        conexion.query(`SELECT * FROM ${tabla} WHERE Cedula=${Cedula}`, (error, result) => {
             return error ? reject(error) : resolve(result);
         })
     });
@@ -74,6 +74,7 @@ function eliminar(tabla, data){
         })
     });
 }
+
 
 module.exports = {
     todos,

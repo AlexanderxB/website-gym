@@ -6,10 +6,9 @@ const controlador = require('./index');
 const router = express.Router();
 
 router.get('/', todos);//trae TODOS LOS DATOS
-//router.get('/:Cedula', uno);
-router.get('/:Cedula', uno);
+router.get('/:Cedula', uno);//trae UN SOLO DATO, lo trae con la cedula
 router.post('/', insertar);
-router.put('/', actualizar);
+router.put('/:Cedula', actualizar);
 router.delete('/', eliminar);
 
 async function todos (req,res,next) {
@@ -18,7 +17,7 @@ async function todos (req,res,next) {
         respuesta.success(req, res, items, 200);
     } catch (error) {
         //respuesta.error(req,res,err,500);
-        next(err);
+        next(error);
     }   
 };
 
@@ -28,7 +27,7 @@ async function uno (req,res,next) {
         respuesta.success(req, res, items, 200);
     } catch (error) {
         //respuesta.error(req,res,err,500);
-        next(err);
+        next(error);
     }    
 };
 
@@ -38,7 +37,7 @@ async function insertar (req,res,next) {
         respuesta.success(req, res, 'Item guardado con exito', 201);
     } catch (error) {
         //respuesta.error(req,res,err,500);
-        next(err);
+        next(error);
     }    
 };
 
@@ -48,7 +47,7 @@ async function actualizar (req,res,next) {
         respuesta.success(req, res, 'Item actualizado con exito', 201);
     } catch (error) {
         //respuesta.error(req,res,err,500);
-        next(err);
+        next(error);
     }    
 };
 
@@ -58,7 +57,7 @@ async function eliminar (req,res,next) {
         respuesta.success(req, res, 'Item eliminado satisfactoriamente', 200);
     } catch (error) {
         //respuesta.error(req,res,err,500);
-        next(err);
+        next(error);
     }    
 };
 

@@ -69,7 +69,7 @@ function actualizar(tabla, data){
 
 function eliminar(tabla, data){
     return new Promise( (resolve,reject) => {
-        conexion.query(`DELETE FROM ${tabla} WHERE Cedula=?`, data.Cedula, (error, result) => {
+        conexion.query(`DELETE FROM ${tabla} WHERE ID_MedidasCorporales=?`, data.ID_MedidasCorporales, (error, result) => {
             return error ? reject(error) : resolve(result);
         })
     });

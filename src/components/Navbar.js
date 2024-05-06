@@ -13,12 +13,12 @@ function Navbar() {
   };
 
   const navbarStyle = {
-    position: "fixed", // O utiliza "absolute" dependiendo de tus necesidades
+    position: "fixed", 
     top: 0,
     left: 0,
     width: "100%",
-    zIndex: 1000, // Asegura que el Navbar esté en la capa superior
-    // ... otros estilos que desees aplicar
+    zIndex: 1000, 
+    
   };
 
   return (

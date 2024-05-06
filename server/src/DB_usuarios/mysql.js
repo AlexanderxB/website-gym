@@ -53,7 +53,7 @@ function uno(tabla, Cedula){
 
 function insertar(tabla, data){
     return new Promise( (resolve,reject) => {
-        conexion.query(`INSERT INTO ${tabla} SET ?`, data, (error, result) => {
+        conexion.query(`INSERT INTO ${tabla} SET ? ON DUPLICATE KEY UPDATE ?`, [data,data], (error, result) => {
             return error ? reject(error) : resolve(result);
         })
     });

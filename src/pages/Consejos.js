@@ -1,12 +1,16 @@
-// src/pages/AcercaNosotros.js
-import React from "react";
+//Consejos.js
+import React, { useContext } from "react";
 import Navbar2 from "../components/Navbar2";
 import imgaacerca from "../assets/images/imgperfil.jpeg";
 import imgestiramiento1 from "../assets/images/imgestiramiento.png";
 import imgdescanso from "../assets/images/imgdescanso.png";
 import imgvervideo from "../assets/images/imgvervideo.png";
+import UserContext from "../UserContext";
 
 function Motivacion() {
+  // Dentro del componente 
+  const { cedulaUsuario } = useContext(UserContext);
+
   const backgroundImageStyle = {
     width: "1980px",
     height: "850px",
@@ -66,10 +70,10 @@ function Motivacion() {
 
   return (
     <div>
-      <Navbar2 />
+      <Navbar2 cedulaUsuario={cedulaUsuario} />
       <div style={{ display: "flex", position: "relative" }}>
         <img src={imgaacerca} alt="Logo" className="logo-image" style={backgroundImageStyle} />
-
+        
         {/* Primer contenedor */}
         <div style={containerStyle}>
           <div style={contentStyle}>

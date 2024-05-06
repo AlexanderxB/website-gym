@@ -1,11 +1,13 @@
 // Navbar2.js
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../Navbar.css";
 import logoImage from "../assets/images/logogym.png";
+import UserContext from "../UserContext";
 
 function Navbar2() {
+  const { cedulaUsuario } = useContext(UserContext);
   const navRef = useRef();
 
   const showNavbar = () => {
@@ -13,12 +15,10 @@ function Navbar2() {
   };
 
   const navbarStyle = {
-    position: "fixed", // O utiliza "absolute" dependiendo de tus necesidades
-    top: 0,
+    position: "fixed", 
     left: 0,
     width: "100%",
-    zIndex: 1000, // Asegura que el Navbar esté en la capa superior
-    // ... otros estilos que desees aplicar
+    zIndex: 1000, 
   };
 
   return (
@@ -30,8 +30,9 @@ function Navbar2() {
         <Link to="/Consejos">Consejos</Link>
         <Link to="/MedidasCorporales">Medidas Corporales</Link>
         <Link to="/PlanEntrenamiento">Plan de Entrenamiento</Link>
-        <Link to="/EjerciciosGrupoMuscular">Ejercicios Grupo Muscular</Link>
+        <Link to="/CreaRutina">Crea tu rutina</Link>
         <Link to="/">CerrarSesion</Link>
+        <Link to="#">Bienvenido Usuario: {cedulaUsuario}</Link>
         <button
           className="nav-btn nav-close-btn"
           onClick={showNavbar}

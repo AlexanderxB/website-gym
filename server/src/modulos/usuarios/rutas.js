@@ -1,7 +1,7 @@
 const express = require('express');
 
 const respuesta = require('../../red/respuestas');
-const controlador = require('../usuarios/controlador');
+const controlador = require('./index');
 
 const router = express.Router();
 
@@ -37,7 +37,7 @@ async function insertar (req,res,next) {
         respuesta.success(req, res, 'Item guardado con exito', 201);
     } catch (error) {
         //respuesta.error(req,res,err,500);
-        next(err);
+        next(error);
     }    
 };
 
@@ -57,7 +57,7 @@ async function eliminar (req,res,next) {
         respuesta.success(req, res, 'Item eliminado satisfactoriamente', 200);
     } catch (error) {
         //respuesta.error(req,res,err,500);
-        next(err);
+        next(error);
     }    
 };
 

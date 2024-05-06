@@ -1,11 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import login from "../assets/images/imglogin.webp";
 import logo from "../assets/images/logogym2.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import UserContext from "../UserContext";
+import axios from "axios";
+
+//useState --> devuelve un valor con estado y una funcion para actualizarla
+// esta funcion useState([]) devuelve dos cosas: 1-un valor con estado que es usuarios 2-una funcion para actualizar que es setUsuarios
+
+const URI = 'http://localhost:4000/api/auth';
 
 const IniciarSesion = () => {
+
+  const { setCedulaUsuario } = useContext(UserContext);
+  
+  const [Cedula, setCedula] = useState(""); // Estado para almacenar el nombre de usuario
+  const [password, setContrasena] = useState(""); // Estado para almacenar la contraseña
+
+  const actualizarCedula = (event) => {
+    setCedula(event.target.value); // Actualiza el estado del nombre de usuario cuando cambia el campo de entrada
+  };
+
+  const actualizarContrasena = (event) => {
+    setContrasena(event.target.value); // Actualiza el estado de la contraseña cuando cambia el campo de entrada
+  };
+
   const navigate = useNavigate();
 
   const imageStyle = {
@@ -82,13 +103,48 @@ const IniciarSesion = () => {
     }));
   };
 
-  const handleLogin = () => {
-    // Aquí puedes realizar cualquier lógica de autenticación necesaria
-    
-    // Después de autenticar al usuario, navega a la página PerfilUsuario.js
-    navigate("/consejos");
+  const handleForgotPassword = () => {
+    navigate("/cambioContrasena");
   };
 
+  const handleLogin = async () => {
+    try {
+      // Realiza una solicitud GET al backend para consultar si el usuario está registrado
+      const response = await axios.get(`${URI}/${Cedula}`);
+      
+      // Imprime la respuesta completa en la consola para verificar su estructura y contenido
+      console.log(response);
+  
+      // Verifica la respuesta del backend
+      if (response.data && response.data.body && response.data.body.length > 0) {
+        // Accede a la contraseña en la respuesta del backend
+        const { Contrasena } = response.data.body[0];
+  
+        // Ahora puedes utilizar la contraseña para realizar las comprobaciones necesarias
+        if (Contrasena === password) {
+          // Si la contraseña coincide, redirige a la página de consejos
+          setCedulaUsuario(Cedula); // Establece la cédula del usuario en el contexto
+          navigate("/Consejos");
+        } else {
+          // Si la contraseña no coincide, muestra un mensaje de error
+          alert("Contraseña incorrecta. Verifica los datos ingresados.");
+        }
+      } else {
+        // Si la cédula no está registrada en la base de datos o la respuesta no tiene datos
+        alert("Usuario no registrado");
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      // Muestra un mensaje de error en caso de problemas de conexión
+      alert("Error al intentar iniciar sesión");
+      // Muestra un mensaje de error específico si está disponible en la respuesta del servidor
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      }
+    }
+  };
+  
+  
   return (
     <div>
       <Navbar />
@@ -101,8 +157,10 @@ const IniciarSesion = () => {
           <input
             type="text"
             id="username"
+            value={Cedula} 
+            onChange={actualizarCedula} 
             style={inputStyle}
-            placeholder="Ingrese su usuario"
+            placeholder="Ingrese su cedula"
           />
         </div>
 
@@ -112,14 +170,19 @@ const IniciarSesion = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="password"
+              value={password} 
+              onChange={actualizarContrasena} 
               style={inputStyle}
               placeholder="Ingrese su contraseña"
             />
+            <div style={{ marginBottom: "10px", textAlign: "center" }}>
+             <p style={{ fontSize: "14px", cursor: "pointer" }} onClick={handleForgotPassword}>¿Olvidó su contraseña?</p>
+            </div>
             <button
               style={{
                 position: "absolute",
                 right: "10px",
-                top: "50%",
+                top: "30%",
                 transform: "translateY(-50%)",
                 border: "none",
                 background: "none",

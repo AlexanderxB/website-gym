@@ -7,28 +7,28 @@ import imghome1 from "../assets/images/imgbienvenida2.png";
 
 function Home() {
   const imageStyle = {
-    width: "900px", // Ancho de la imagen
-    height: "950px", // Altura de la imagen
+    width: "900px", 
+    height: "950px", 
     marginTop: "8px",
   };
 
   const contentStyle = {
-    marginLeft: "300px", // Margen izquierdo
-    marginTop: "250px", // Margen superior
+    marginLeft: "300px", 
+    marginTop: "250px", 
   };
 
   const h2Style = {
-    color: "#B42B51", // Color para h2
+    color: "#B42B51", 
   };
 
   const h4Style = {
-    color: "#5D3FD2", // Color para h1
-    fontSize: "4px", // Tamaño de la letra para h1
+    color: "#5D3FD2", 
+    fontSize: "4px", 
   };
 
   const h1Style = {
-    color: "#000", // Color para h1
-    fontSize: "34px", // Tamaño de la letra para h1
+    color: "#000", 
+    fontSize: "34px", 
   };
 
   return (
