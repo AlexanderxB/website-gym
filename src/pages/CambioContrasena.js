@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import login from "../assets/images/imglogin.webp";
+import login from "../assets/images/imgCambioContraseña.jpg";
 import logo from "../assets/images/logogym2.png";
-import volver from "../assets/images/iconVolver.png"; 
+import volver from "../assets/images/iconVolver.png"; // Importa la imagen "volver"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 
@@ -184,7 +184,8 @@ const CambioContrasena = () => {
   };
 
   const handleVolver = () => {
-    navigate("/iniciarSesion"); 
+    // Aquí puedes agregar la lógica para volver a la página anterior
+    navigate("/iniciarSesion"); // Navega a la página de inicio de sesión
   };
 
   return (
@@ -199,8 +200,8 @@ const CambioContrasena = () => {
           <input
             type="text"
             id="username"
-            value={Cedula} 
-            onChange={actualizarCedula} 
+            value={Cedula} // Establece el valor del campo de entrada del nombre de usuario con el valor del estado
+            onChange={actualizarCedula} // Maneja el cambio en el campo de entrada del nombre de usuario 
             style={inputStyle}
             placeholder="Ingrese su cedula"
           />
@@ -212,8 +213,8 @@ const CambioContrasena = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              value={password} 
-              onChange={actualizarContrasena} 
+              value={password} // Establece el valor del campo de entrada del nombre de usuario con el valor del estado
+              onChange={actualizarContrasena} // Maneja el cambio en el campo de entrada del nombre de usuario 
               style={inputStyle}
               placeholder="Ingrese su nueva contraseña"
             />
@@ -240,8 +241,9 @@ const CambioContrasena = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="confirmarContrasena"
-              value={confirmarContrasena} 
-              onChange={actualizarConfirmacionContrasena} 
+              value={confirmarContrasena} // Establece el valor del campo de entrada del nombre de usuario con el valor del estado
+              onChange={actualizarConfirmacionContrasena} // Maneja el cambio en el campo de entrada del nombre de usuario 
+              style={inputStyle}
               placeholder="Confirme su nueva contraseña"
             />
             <button

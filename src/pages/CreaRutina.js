@@ -29,8 +29,7 @@ function CreaRutina() {
     setCedula(event.target.value); // Actualiza el estado del nombre de usuario cuando cambia el campo de entrada
   };
 
-  const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-
+  const diasSemana = ['Elija el dia','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
   const [hoveredButton, setHoveredButton] = useState(null);
 
@@ -143,7 +142,6 @@ function CreaRutina() {
       console.error("Error al elegir una parte del cuerpo:", error);
     }
   }; */
-
 
   const handleParteCuerpo = async (parteSeleccionada) => {
     try {
@@ -520,18 +518,18 @@ function CreaRutina() {
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px" }}>
             {/* Botón 1 */}
             
-            <button
+            {/* <button
               style={{ ...buttonStyle, backgroundColor: hoveredButton === "Boton1" ? "#7F63EC" : "#B42B51", color: "#fff" }}
               onMouseEnter={() => setHoveredButton("Boton1")}
               onMouseLeave={() => setHoveredButton(null)}
               onClick={handleEliminar}
             >
               Eliminar ejercicio de Base de datos
-            </button>
+            </button> */}
             {/* Botón 2 */}
             <button
-              style={{ ...buttonStyle, backgroundColor: hoveredButton === "Boton3" ? "#7F63EC" : "#B42B51", color: "#fff", marginLeft: "20px" }}
-              onMouseEnter={() => setHoveredButton("Boton2")}
+              style={{ ...buttonStyle, backgroundColor: hoveredButton === "Boton5" ? "#7F63EC" : "#B42B51", color: "#fff", marginLeft: "20px" }}
+              onMouseEnter={() => setHoveredButton("Boton5")}
               onMouseLeave={() => setHoveredButton(null)}
               onClick={handleGuardarCambios}
             >
@@ -541,7 +539,6 @@ function CreaRutina() {
           </div>
 
         </div>
-
 
 
          {/* Nuevo contenedor blanco */}
@@ -584,3 +581,4 @@ function CreaRutina() {
 }
 
 export default CreaRutina;
+

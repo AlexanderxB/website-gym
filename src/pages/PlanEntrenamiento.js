@@ -1,4 +1,3 @@
-// src/pages/AcercaNosotros.js
 import React, { useState, useEffect, useContext  } from "react";
 import Navbar2 from "../components/Navbar2";
 import imgplanentrenamiento from "../assets/images/imgplanentrenamiento.png";
@@ -9,6 +8,8 @@ import axios from "axios";
 const URI = 'http://localhost:4000/api/planentrenamiento';
 const URI2 = 'http://localhost:4000/api/ejerciciosgrupomuscular';
 
+let elemento;
+
 function PlanEntrenamiento() {
 
   const { cedulaUsuario } = useContext(UserContext);
@@ -16,6 +17,7 @@ function PlanEntrenamiento() {
   const [ejerciciosPorParteCuerpo, setEjerciciosPorParteCuerpo] = useState([]);
   const [ejercicioSeleccionado, setEjercicioSeleccionado] = useState(null); 
   const [videoURL, setVideoURL] = useState('');
+ 
 
   const actualizarDiaSemana = (event) => {
     setDiaSemana (event.target.value); 
@@ -168,15 +170,7 @@ function PlanEntrenamiento() {
   
       // Mostrar los datos filtrados en la consola
       console.log("Datos del día seleccionado:", datosDiaSeleccionado);
-
-      // Verificar si no se encontraron datos para el día seleccionado
-      if (datosDiaSeleccionado.length === 0) {
-        // Mostrar un mensaje en el contenedor
-        alert("No está asignada una rutina para este día: " + diaSeleccionado);
-        // Limpiar la lista de ejercicios
-        setEjerciciosPorParteCuerpo([]);
-        return;
-      }
+      console.log("Tamaño de los datos del dia seleccionado" + datosDiaSeleccionado.length);
   
       // Realizar una nueva solicitud para obtener la lista de ejercicios asociados con ese plan de entrenamiento y usuario
       const responseEjercicios = await axios.get(URI2, {
@@ -194,6 +188,29 @@ function PlanEntrenamiento() {
   
       // Mostrar los datos filtrados en la consola
       console.log("Datos del ejercicio seleccionado:", ejerciciosFiltrados);
+  
+      // Verificar si hay elementos comunes entre los ID_EjerciciosGrupoMuscular de datosDiaSeleccionado y ejerciciosFiltrados
+      const idsDiaSeleccionado = datosDiaSeleccionado.map(item => item.ID_EjerciciosGrupoMuscular);
+      const idsEjerciciosSeleccionados = ejerciciosFiltrados.map(ejercicio => ejercicio.ID_EjerciciosGrupoMuscular);
+  
+      // Iterar sobre los elementos de idsDiaSeleccionado
+      for (let i = 0; i < idsDiaSeleccionado.length; i++) {
+        let elemento = idsDiaSeleccionado[i];
+  
+        // Comprobar si el elemento está presente en idsEjerciciosSeleccionados
+        if (idsEjerciciosSeleccionados.includes(elemento)) {
+          // Imprimir el elemento que es igual en ambos objetos
+          console.log("El elemento que es igual en ambos objetos es: " + elemento);
+        }
+      }
+  
+      if (!idsDiaSeleccionado.some(id => idsEjerciciosSeleccionados.includes(id))) {
+        // Mostrar un mensaje en el contenedor
+        alert("No está asignada una rutina para este día... " + diaSeleccionado);
+        // Limpiar la lista de ejercicios
+        setEjerciciosPorParteCuerpo([]);
+        return;
+      }
     } catch (error) {
       console.error("Error al elegir un día de la semana:", error);
     }
@@ -214,25 +231,14 @@ function PlanEntrenamiento() {
       // Filtrar los datos para obtener solo los correspondientes al día seleccionado
       const datosDiaSeleccionado = response.data.body.filter(item => item.Dia_Entrenamiento === diaSeleccionado);
   
-      // Extraer el ID del plan de entrenamiento correspondiente al día seleccionado
-      const idPlanEntrenamiento = datosDiaSeleccionado[0]?.ID_PlanEntrenamiento;
-  
       // Mostrar los datos filtrados en la consola
       console.log("Datos del día seleccionado:", datosDiaSeleccionado);
-  
-      // Verificar si no se encontraron datos para el día seleccionado
-      if (datosDiaSeleccionado.length === 0) {
-        // Mostrar un mensaje en el contenedor
-        alert("No está asignada una rutina para este día: " + diaSeleccionado);
-        // Limpiar la lista de ejercicios
-        setEjerciciosPorParteCuerpo([]);
-        return;
-      }
+      console.log("Tamaño de los datos del dia seleccionado" + datosDiaSeleccionado.length);
   
       // Realizar una nueva solicitud para obtener la lista de ejercicios asociados con ese plan de entrenamiento y usuario
       const responseEjercicios = await axios.get(URI2, {
         params: {
-          ID_PlanEntrenamiento: idPlanEntrenamiento,
+          ID_PlanEntrenamiento: datosDiaSeleccionado[0]?.ID_PlanEntrenamiento,
           Cedula: cedulaUsuario
         }
       });
@@ -246,14 +252,25 @@ function PlanEntrenamiento() {
       // Mostrar los datos filtrados en la consola
       console.log("Datos del ejercicio seleccionado:", ejerciciosFiltrados);
   
-      // Verificar si los ID_EjerciciosGrupoMuscular son iguales
+      // Verificar si hay elementos comunes entre los ID_EjerciciosGrupoMuscular de datosDiaSeleccionado y ejerciciosFiltrados
       const idsDiaSeleccionado = datosDiaSeleccionado.map(item => item.ID_EjerciciosGrupoMuscular);
       const idsEjerciciosSeleccionados = ejerciciosFiltrados.map(ejercicio => ejercicio.ID_EjerciciosGrupoMuscular);
-      const sonIguales = JSON.stringify(idsDiaSeleccionado) === JSON.stringify(idsEjerciciosSeleccionados);
   
-      if (!sonIguales) {
+      // Iterar sobre los elementos de idsDiaSeleccionado
+      for (const id of idsDiaSeleccionado) {
+        // Comprobar si el elemento está presente en idsEjerciciosSeleccionados
+        if (idsEjerciciosSeleccionados.includes(id)) {
+          // Imprimir el elemento que es igual en ambos objetos
+          console.log("El elemento que es igual en ambos objetos es:", id);
+          // Asignar el valor a elemento
+          elemento = id;
+          //break; // Terminar el bucle una vez que se encuentre el primer elemento común
+        }
+      }
+  
+      if (!idsDiaSeleccionado.some(id => idsEjerciciosSeleccionados.includes(id))) {
         // Mostrar un mensaje en el contenedor
-        alert("No está asignada una rutina para este día: " + diaSeleccionado);
+        alert("No está asignada una rutina para este día... " + diaSeleccionado);
         // Limpiar la lista de ejercicios
         setEjerciciosPorParteCuerpo([]);
         return;
@@ -262,6 +279,10 @@ function PlanEntrenamiento() {
       console.error("Error al elegir un día de la semana:", error);
     }
   };
+  
+
+  
+  
 
   /*const handleEjercicioSeleccionado = async (ejercicioSeleccionado) => {
     try {
@@ -354,27 +375,30 @@ function PlanEntrenamiento() {
         <img src={imgplanentrenamiento} alt="Logo" className="logo-image" style={backgroundImageStyle} />
         <div style={categoriaEjercicioContainerStyle} id="miContenedorId">
           <h1 style={categoriaEjercicioTitleStyle}>Lista de Ejercicio</h1>
-          <div>
-            {ejerciciosPorParteCuerpo.map((ejercicio, index) => (
-              <div
-                key={index}
-                onClick={() => handleEjercicioSeleccionado(ejercicio.Nombre_Ejercicio)}
-                style={{ backgroundColor: ejercicioSeleccionado === ejercicio.Nombre_Ejercicio ? "#7F63EC" : "transparent", padding: "5px", borderRadius: "5px", cursor: "pointer" }}
-              >
-                <p>{ejercicio.Nombre_Ejercicio}</p>
-              </div>
-            ))}
-          </div>
+          {/* <p>Elemento seleccionado: {elemento}</p> Aquí se muestra la variable elemento */}
+            <div>
+              {/* Renderiza los ejercicios con ID_EjerciciosGrupoMuscular igual a elemento */}
+              {ejerciciosPorParteCuerpo.filter(ejercicio => ejercicio.ID_EjerciciosGrupoMuscular === elemento).map(ejercicio => (
+                <div
+                  key={ejercicio.ID_EjerciciosGrupoMuscular}
+                  style={{ backgroundColor: ejercicioSeleccionado === ejercicio.Nombre_Ejercicio ? "#7F63EC" : "transparent", padding: "5px", borderRadius: "5px", cursor: "pointer" }}
+                  onClick={() => handleEjercicioSeleccionado(ejercicio.Nombre_Ejercicio)}
+                >
+                  <p>{ejercicio.Nombre_Ejercicio}</p>
+                </div>
+              ))}
+            </div>
+
           <div style={{ display: "flex", marginTop: "580px" }}>
             {/* Botón 2 */}
-            <button
+            {/* <button
               style={{ ...buttonStyle1, backgroundColor: hoveredButton === "Boton2" ? "#7F63EC" : "#B42B51", color: "#fff", marginLeft: "200px" }}
               onMouseEnter={() => setHoveredButton("Boton2")}
               onMouseLeave={() => setHoveredButton(null)}
               onClick={() => handleBorrar()}
             >
               Eliminar ejercicio  
-            </button>
+            </button> */}
           </div>
         </div>
         <div style={containerStyle}>

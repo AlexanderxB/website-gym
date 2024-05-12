@@ -299,6 +299,7 @@ function MedidasCorporales() {
       setAntebrazo_Izquierdo("");
       setPierna_Derecha("");
       setPierna_Izquierda("");
+      alert("Feliciades a guardaro sus medidas corporales");
   
     } catch (error) {
       console.error("Error al ingresar las medidas corporales:", error);
